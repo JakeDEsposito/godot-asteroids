@@ -5,6 +5,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_gdxib"]
 
 [node name="Asteroid" type="RigidBody2D"]
+gravity_scale = 0.0
 script = ExtResource("1_g6osj")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
