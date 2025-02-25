@@ -1,8 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://c57qhxvc3tbjg"]
+[gd_scene load_steps=6 format=3 uid="uid://c57qhxvc3tbjg"]
 
 [ext_resource type="Script" path="res://scenes/entities/asteroid/asteroid.gd" id="1_g6osj"]
+[ext_resource type="AudioStream" uid="uid://2ye6bxoqhket" path="res://assets/audio/lowFrequency_explosion_000.ogg" id="2_2eum2"]
+[ext_resource type="AudioStream" uid="uid://djwgq58kbmnaw" path="res://assets/audio/lowFrequency_explosion_001.ogg" id="3_kd53p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gdxib"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_v7jxw"]
+streams_count = 2
+stream_0/stream = ExtResource("2_2eum2")
+stream_1/stream = ExtResource("3_kd53p")
 
 [node name="Asteroid" type="RigidBody2D"]
 gravity_scale = 0.0
@@ -10,5 +17,10 @@ script = ExtResource("1_g6osj")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_gdxib")
+
+[node name="ExplosionAudio" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_v7jxw")
+volume_db = -4.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
