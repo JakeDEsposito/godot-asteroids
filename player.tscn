@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsrqfv74uedqb"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_hv1n0"]
+
+[node name="Player" type="RigidBody2D"]
+script = ExtResource("1_hv1n0")
+
+[node name="Collision" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -10, 8, 10, -8, 10)
+
+[node name="Ship" type="Line2D" parent="."]
+points = PackedVector2Array(0, -10, 8, 10, 3, 6, -3, 6, -8, 10)
+closed = true
+width = 1.0
+default_color = Color(0, 1, 0, 1)
+joint_mode = 2
