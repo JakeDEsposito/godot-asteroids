@@ -14,4 +14,4 @@ func move(dt: float) -> void:
 	apply_impulse(Vector2.UP.rotated(rotation) * MOVE_SCALER * Input.get_action_strength("forward"))
 	
 	# Rotation Movement
-	rotation += Input.get_axis("right", "left") * ROTATE_SPEED * dt
+	rotation += Input.get_axis("left", "right") * ROTATE_SPEED * dt
