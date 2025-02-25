@@ -1,6 +1,59 @@
-[gd_scene load_steps=2 format=3 uid="uid://dsrqfv74uedqb"]
+[gd_scene load_steps=27 format=3 uid="uid://dsrqfv74uedqb"]
 
 [ext_resource type="Script" path="res://scenes/entities/player/player.gd" id="1_hv1n0"]
+[ext_resource type="AudioStream" uid="uid://gk8hxx78ya3s" path="res://assets/audio/spaceEngineLow_000.ogg" id="2_wejo5"]
+[ext_resource type="AudioStream" uid="uid://dxbc6ijf4kgse" path="res://assets/audio/impactMetal_000.ogg" id="3_1hu0u"]
+[ext_resource type="AudioStream" uid="uid://dqjfvd3recquu" path="res://assets/audio/impactMetal_001.ogg" id="4_j8vaq"]
+[ext_resource type="AudioStream" uid="uid://ds22yevkto22a" path="res://assets/audio/impactMetal_002.ogg" id="5_w40nl"]
+[ext_resource type="AudioStream" uid="uid://cbjwacbrp6k1t" path="res://assets/audio/impactMetal_003.ogg" id="6_qlwlb"]
+[ext_resource type="AudioStream" uid="uid://df8mh3kg08vos" path="res://assets/audio/impactMetal_004.ogg" id="7_3nd40"]
+[ext_resource type="AudioStream" uid="uid://d1865ule1lx78" path="res://assets/audio/forceField_000.ogg" id="8_fh8tq"]
+[ext_resource type="AudioStream" uid="uid://cle2h16uwd2kr" path="res://assets/audio/forceField_001.ogg" id="9_lmso0"]
+[ext_resource type="AudioStream" uid="uid://d2jpbvj4k8lef" path="res://assets/audio/forceField_002.ogg" id="10_rvfx1"]
+[ext_resource type="AudioStream" uid="uid://duobqm4aldmbw" path="res://assets/audio/forceField_003.ogg" id="11_nk2u3"]
+[ext_resource type="AudioStream" uid="uid://bigjfq1wu2t62" path="res://assets/audio/forceField_004.ogg" id="12_hxx7r"]
+[ext_resource type="AudioStream" uid="uid://dnue6slef4os1" path="res://assets/audio/explosionCrunch_000.ogg" id="13_xelsy"]
+[ext_resource type="AudioStream" uid="uid://dcwo1cprxyesr" path="res://assets/audio/explosionCrunch_001.ogg" id="14_vyulp"]
+[ext_resource type="AudioStream" uid="uid://cdq2fujb1nucc" path="res://assets/audio/explosionCrunch_002.ogg" id="15_jotwm"]
+[ext_resource type="AudioStream" uid="uid://bcmayp0a6d5lx" path="res://assets/audio/explosionCrunch_003.ogg" id="16_5lk11"]
+[ext_resource type="AudioStream" uid="uid://dypvk2jsnrotc" path="res://assets/audio/explosionCrunch_004.ogg" id="17_pl836"]
+[ext_resource type="AudioStream" uid="uid://cnw6mbdqa2iwh" path="res://assets/audio/laserRetro_000.ogg" id="18_813lq"]
+[ext_resource type="AudioStream" uid="uid://cf4slqssr82dm" path="res://assets/audio/laserRetro_001.ogg" id="19_qagxx"]
+[ext_resource type="AudioStream" uid="uid://qoebamjjxt6l" path="res://assets/audio/laserRetro_002.ogg" id="20_6dnre"]
+[ext_resource type="AudioStream" uid="uid://cwujri10ty61q" path="res://assets/audio/laserRetro_003.ogg" id="21_gk4xf"]
+[ext_resource type="AudioStream" uid="uid://uw1knq4fbmhk" path="res://assets/audio/laserRetro_004.ogg" id="22_sjqrc"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_he2o0"]
+streams_count = 5
+stream_0/stream = ExtResource("3_1hu0u")
+stream_1/stream = ExtResource("4_j8vaq")
+stream_2/stream = ExtResource("5_w40nl")
+stream_3/stream = ExtResource("6_qlwlb")
+stream_4/stream = ExtResource("7_3nd40")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7q83w"]
+streams_count = 5
+stream_0/stream = ExtResource("8_fh8tq")
+stream_1/stream = ExtResource("9_lmso0")
+stream_2/stream = ExtResource("10_rvfx1")
+stream_3/stream = ExtResource("11_nk2u3")
+stream_4/stream = ExtResource("12_hxx7r")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ithwr"]
+streams_count = 5
+stream_0/stream = ExtResource("13_xelsy")
+stream_1/stream = ExtResource("14_vyulp")
+stream_2/stream = ExtResource("15_jotwm")
+stream_3/stream = ExtResource("16_5lk11")
+stream_4/stream = ExtResource("17_pl836")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tuys5"]
+streams_count = 5
+stream_0/stream = ExtResource("18_813lq")
+stream_1/stream = ExtResource("19_qagxx")
+stream_2/stream = ExtResource("20_6dnre")
+stream_3/stream = ExtResource("21_gk4xf")
+stream_4/stream = ExtResource("22_sjqrc")
 
 [node name="Player" type="RigidBody2D"]
 gravity_scale = 0.0
@@ -16,3 +69,33 @@ closed = true
 width = 1.0
 default_color = Color(0, 1, 0, 1)
 joint_mode = 2
+
+[node name="EngineAudio" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_wejo5")
+volume_db = -18.0
+autoplay = true
+stream_paused = true
+bus = &"SFX"
+
+[node name="ImpactAudio" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_he2o0")
+volume_db = -4.0
+bus = &"SFX"
+
+[node name="ForceFieldAudio" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_7q83w")
+volume_db = -8.0
+bus = &"SFX"
+
+[node name="ExplosionAudio" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_ithwr")
+volume_db = -6.0
+
+[node name="LaserAudio" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_tuys5")
+volume_db = -8.0
