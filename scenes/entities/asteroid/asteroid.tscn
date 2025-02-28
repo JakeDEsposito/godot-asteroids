@@ -11,11 +11,16 @@ streams_count = 2
 stream_0/stream = ExtResource("2_2eum2")
 stream_1/stream = ExtResource("3_kd53p")
 
-[node name="Asteroid" type="RigidBody2D"]
+[node name="Asteroid" type="RigidBody2D" groups=["asteroids"]]
+collision_layer = 2
+collision_mask = 3
 gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 12
 script = ExtResource("1_g6osj")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
 shape = SubResource("CircleShape2D_gdxib")
 
 [node name="ExplosionAudio" type="AudioStreamPlayer" parent="."]
