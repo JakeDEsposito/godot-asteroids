@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://4natifp6xxa6"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_1gf24"]
+
+[node name="Bullet" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 2
+gravity_scale = 0.0
+can_sleep = false
+lock_rotation = true
+continuous_cd = 1
+contact_monitor = true
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_1gf24")
+
+[node name="Bullet" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 10)
+width = 1.0
+default_color = Color(0, 1, 0, 1)
