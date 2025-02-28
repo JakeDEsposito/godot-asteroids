@@ -75,7 +75,6 @@ unique_name_in_owner = true
 stream = ExtResource("2_wejo5")
 volume_db = -18.0
 autoplay = true
-stream_paused = true
 bus = &"SFX"
 
 [node name="ImpactAudio" type="AudioStreamPlayer" parent="."]
@@ -94,8 +93,12 @@ bus = &"SFX"
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_ithwr")
 volume_db = -6.0
+bus = &"SFX"
 
 [node name="LaserAudio" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_tuys5")
 volume_db = -8.0
+bus = &"SFX"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
