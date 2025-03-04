@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c57qhxvc3tbjg"]
 
-[ext_resource type="Script" path="res://scenes/entities/asteroid/asteroid.gd" id="1_g6osj"]
+[ext_resource type="Script" uid="uid://da6xwth8rj4kg" path="res://scenes/entities/asteroid/asteroid.gd" id="1_g6osj"]
 [ext_resource type="AudioStream" uid="uid://2ye6bxoqhket" path="res://assets/audio/lowFrequency_explosion_000.ogg" id="2_2eum2"]
 [ext_resource type="AudioStream" uid="uid://djwgq58kbmnaw" path="res://assets/audio/lowFrequency_explosion_001.ogg" id="3_kd53p"]
 

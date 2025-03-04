@@ -1,6 +1,6 @@
 [gd_scene load_steps=27 format=3 uid="uid://dsrqfv74uedqb"]
 
-[ext_resource type="Script" path="res://scenes/entities/player/player.gd" id="1_hv1n0"]
+[ext_resource type="Script" uid="uid://cnwoq5kfxyerw" path="res://scenes/entities/player/player.gd" id="1_hv1n0"]
 [ext_resource type="AudioStream" uid="uid://gk8hxx78ya3s" path="res://assets/audio/spaceEngineLow_000.ogg" id="2_wejo5"]
 [ext_resource type="AudioStream" uid="uid://dxbc6ijf4kgse" path="res://assets/audio/impactMetal_000.ogg" id="3_1hu0u"]
 [ext_resource type="AudioStream" uid="uid://dqjfvd3recquu" path="res://assets/audio/impactMetal_001.ogg" id="4_j8vaq"]
