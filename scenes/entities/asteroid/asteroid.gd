@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 const RESOLUTION: int = 12
-const ANGLE_STEP: float = PI * 2 / RESOLUTION
+const ANGLE_STEP: float = TAU / RESOLUTION
 
 const MAX_ASTEROID_SIZE: int = 2
 
@@ -40,7 +40,7 @@ func takeHit() -> void:
 		var meteoroids: Array[PackedScene] = Array()
 		
 		var meteoroids_count := randi_range(1, 3)
-		var angle_step := PI * 2 / meteoroids_count
+		var angle_step := TAU / meteoroids_count
 		
 		for i in meteoroids_count:
 			var theta := i * angle_step
