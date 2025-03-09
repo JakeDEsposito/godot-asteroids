@@ -3,14 +3,19 @@ extends RigidBody2D
 const ROTATE_SPEED: float = 4.5
 const MOVE_SCALER: float = 0.6
 
+@onready var muzzle: Marker2D = %Muzzle
+
 @onready var engine_audio: AudioStreamPlayer = %EngineAudio
 @onready var impact_audio: AudioStreamPlayer = %ImpactAudio
 @onready var force_field_audio: AudioStreamPlayer = %ForceFieldAudio
 @onready var explosion_audio: AudioStreamPlayer = %ExplosionAudio
 @onready var laser_audio: AudioStreamPlayer = $LaserAudio
 
+var bullet_scene = preload("res://scenes/entities/bullet/bullet.tscn")
+
 var health: int = 3
 var is_invulnerable: bool = false
+var can_shoot: bool = true
 
 func _physics_process(dt: float) -> void:
 	move(dt)
@@ -20,6 +25,20 @@ func _physics_process(dt: float) -> void:
 	
 	# The engine audio below 0.2 pitch scale sounds wierd so stop the engine audio if it is below that
 	engine_audio.stream_paused = engine_audio.pitch_scale < 0.2
+	
+	if Input.is_action_pressed("shoot") and can_shoot:
+		can_shoot = false
+		
+		var bullet: RigidBody2D = bullet_scene.instantiate()
+		
+		bullet.transform = muzzle.global_transform
+		bullet.apply_force(Vector2(0, -20000).rotated(bullet.rotation))
+		
+		owner.add_child(bullet)
+		
+		laser_audio.play()
+		
+		get_tree().create_timer(0.2, false).timeout.connect(func(): can_shoot = true)
 
 func move(dt: float) -> void:
 	# Forward Movement

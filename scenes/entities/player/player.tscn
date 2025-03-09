@@ -70,6 +70,10 @@ width = 1.0
 default_color = Color(0, 1, 0, 1)
 joint_mode = 2
 
+[node name="Muzzle" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -12)
+
 [node name="EngineAudio" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("2_wejo5")
