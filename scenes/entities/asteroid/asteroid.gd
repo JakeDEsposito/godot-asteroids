@@ -7,15 +7,13 @@ const MAX_ASTEROID_SIZE: int = 2
 
 @export_range(0, MAX_ASTEROID_SIZE) var size: int = randi_range(1, MAX_ASTEROID_SIZE)
 
+@onready var shape: Line2D = %Shape
+
 @onready var collision: CollisionShape2D = %Collision
 @onready var explosion_audio: AudioStreamPlayer = %ExplosionAudio
 
 func _ready() -> void:
-	var asteroid = Line2D.new()
-	asteroid.closed = true
-	asteroid.width = 1
-	asteroid.default_color = Color(0, 255, 0)
-	asteroid.joint_mode = Line2D.LINE_JOINT_ROUND
+	shape.clear_points()
 	
 	for i in RESOLUTION:
 		var theta = i * ANGLE_STEP
@@ -28,7 +26,7 @@ func _ready() -> void:
 			
 			point -= crater.rotated(theta)
 		
-		asteroid.add_point(point * 10)
+		shape.add_point(point * 10)
 	
 	add_child(asteroid)
 	
@@ -38,21 +36,17 @@ func take_hit() -> void:
 	explosion_audio.play()
 	
 	if size > 0:
-		var asteroid_scene: PackedScene = load(scene_file_path)
-		
-		var meteoroids: Array[PackedScene] = Array()
-		
 		var meteoroids_count := randi_range(1, 3)
 		var angle_step := TAU / meteoroids_count
 		
 		for i in meteoroids_count:
 			var theta := i * angle_step
 			
-			var asteroid: RigidBody2D = asteroid_scene.instantiate()
-			asteroid.position = Vector2(cos(theta), sin(theta)) * size * 10 + position
-			asteroid.linear_velocity = linear_velocity
+			var asteroid := duplicate(DUPLICATE_USE_INSTANTIATION)
+			asteroid.global_position = Vector2(cos(theta), sin(theta)) * size * 10 + global_position
 			asteroid.apply_force(Vector2.UP.rotated(theta) * randf_range(1, 10))
 			
+			get_parent().add_child(asteroid)
 	
 	hide()
 	collision.call_deferred("set_disabled", true)
