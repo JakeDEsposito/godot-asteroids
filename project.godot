@@ -21,6 +21,7 @@ buses/default_bus_layout=""
 [global_group]
 
 asteroids="Group for all asteroids in the game"
+bullets="Group for all bullets in the game"
 
 [input]
 
