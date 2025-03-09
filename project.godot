@@ -14,10 +14,6 @@ config/name="Godot Asteroids"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
-[audio]
-
-buses/default_bus_layout=""
-
 [global_group]
 
 asteroids="Group for all asteroids in the game"
