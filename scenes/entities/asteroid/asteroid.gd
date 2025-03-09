@@ -28,8 +28,6 @@ func _ready() -> void:
 		
 		shape.add_point(point * 10)
 	
-	add_child(asteroid)
-	
 func take_hit() -> void:
 	size -= 1
 	
