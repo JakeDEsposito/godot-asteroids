@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://4natifp6xxa6"]
+[gd_scene load_steps=3 format=3 uid="uid://4natifp6xxa6"]
+
+[ext_resource type="Script" uid="uid://fpj7noijpm1f" path="res://scenes/entities/bullet/bullet.gd" id="1_81e36"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_1gf24"]
 
@@ -10,6 +12,8 @@ can_sleep = false
 lock_rotation = true
 continuous_cd = 1
 contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_81e36")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("SegmentShape2D_1gf24")
@@ -18,3 +22,10 @@ shape = SubResource("SegmentShape2D_1gf24")
 points = PackedVector2Array(0, 0, 0, 10)
 width = 1.0
 default_color = Color(0, 1, 0, 1)
+
+[node name="LifespanTimer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="LifespanTimer" to="." method="_on_lifespan_timer_timeout"]
