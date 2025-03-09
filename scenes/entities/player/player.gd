@@ -10,7 +10,7 @@ const MOVE_SCALER: float = 0.6
 @onready var laser_audio: AudioStreamPlayer = $LaserAudio
 
 var health: int = 3
-var isInvulnerable: bool = false
+var is_invulnerable: bool = false
 
 func _physics_process(dt: float) -> void:
 	move(dt)
@@ -32,7 +32,7 @@ func move(dt: float) -> void:
 	angular_velocity = 0
 
 func take_hit() -> void:
-	if isInvulnerable:
+	if is_invulnerable:
 		# TODO: Create a force field visual and make it shimmer when it takes a hit.
 		force_field_audio.play()
 		return
@@ -42,11 +42,9 @@ func take_hit() -> void:
 	if health > 0:
 		impact_audio.play()
 		
-		isInvulnerable = true
+		is_invulnerable = true
 		
-		await get_tree().create_timer(5, false).timeout
-		
-		isInvulnerable = false
+		get_tree().create_timer(5, false).timeout.connect(func(): is_invulnerable = false)
 	else:
 		engine_audio.stop()
 		explosion_audio.play()
