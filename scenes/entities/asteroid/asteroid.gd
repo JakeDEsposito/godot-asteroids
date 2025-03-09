@@ -7,6 +7,8 @@ const MAX_ASTEROID_SIZE: int = 2
 
 @export_range(0, MAX_ASTEROID_SIZE) var size: int = randi_range(1, MAX_ASTEROID_SIZE)
 
+@onready var explosion_audio: AudioStreamPlayer = %ExplosionAudio
+
 func _ready() -> void:
 	var asteroid = Line2D.new()
 	asteroid.closed = true
@@ -34,6 +36,8 @@ func _ready() -> void:
 func takeHit() -> void:
 	size -= 1
 	
+	explosion_audio.play()
+	
 	if size > 0:
 		var asteroid_scene: PackedScene = load(scene_file_path)
 		
@@ -52,7 +56,7 @@ func takeHit() -> void:
 			
 			# TODO: Add to scene
 	
-	queue_free()
+	explosion_audio.finished.connect(func(): queue_free())
 
 func _on_body_entered(body: Node) -> void:
 	takeHit()
