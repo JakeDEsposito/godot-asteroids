@@ -7,6 +7,7 @@ const MAX_ASTEROID_SIZE: int = 2
 
 @export_range(0, MAX_ASTEROID_SIZE) var size: int = randi_range(1, MAX_ASTEROID_SIZE)
 
+@onready var collision: CollisionShape2D = %Collision
 @onready var explosion_audio: AudioStreamPlayer = %ExplosionAudio
 
 func _ready() -> void:
@@ -54,7 +55,9 @@ func takeHit() -> void:
 			asteroid.linear_velocity = linear_velocity
 			asteroid.apply_force(Vector2.UP.rotated(theta) * randf_range(1, 10))
 			
-			# TODO: Add to scene
+	
+	hide()
+	collision.call_deferred("set_disabled", true)
 	
 	explosion_audio.finished.connect(func(): queue_free())
 
