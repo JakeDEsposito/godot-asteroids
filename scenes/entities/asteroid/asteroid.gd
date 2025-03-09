@@ -32,9 +32,7 @@ func _ready() -> void:
 	
 	add_child(asteroid)
 	
-	scale *= size
-
-func takeHit() -> void:
+func take_hit() -> void:
 	size -= 1
 	
 	explosion_audio.play()
@@ -62,4 +60,5 @@ func takeHit() -> void:
 	explosion_audio.finished.connect(func(): queue_free())
 
 func _on_body_entered(body: Node) -> void:
-	takeHit()
+	if not body.is_in_group("asteroids"):
+		take_hit()
