@@ -58,6 +58,8 @@ stream_4/stream = ExtResource("22_sjqrc")
 [node name="Player" type="RigidBody2D"]
 gravity_scale = 0.0
 can_sleep = false
+contact_monitor = true
+max_contacts_reported = 8
 script = ExtResource("1_hv1n0")
 
 [node name="Collision" type="CollisionPolygon2D" parent="."]
