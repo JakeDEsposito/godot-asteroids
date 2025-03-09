@@ -6,7 +6,7 @@ const MAX_ASTEROID_SIZE = 2
 
 const ASTEROIDS_SPAWN_DISTANCE_FROM_PLAYER_LOWER: int = 500
 const ASTEROIDS_SPAWN_DISTANCE_FROM_PLAYER_UPPER: int = 750
-const ASTEROIDS_MAX_DISTNACE_FROM_PLAYER = ASTEROIDS_SPAWN_DISTANCE_FROM_PLAYER_LOWER * 3
+const ASTEROIDS_MAX_DISTANCE_FROM_PLAYER: int = 1500
 
 var asteroids_cap: int = ASTEROIDS_BASE_COUNT
 var score: int = 0
@@ -19,7 +19,13 @@ func _on_increase_asteroids_cap_timer_timeout() -> void:
 	asteroids_cap += floor(score / 10) + 1
 
 func _on_spawn_asteroid_timer_timeout() -> void:
-	if get_tree().get_nodes_in_group("asteroids").size() < asteroids_cap:
+	var asteroids = get_tree().get_nodes_in_group("asteroids")
+	
+	for asteroid in asteroids:
+		if player.global_position.distance_squared_to(asteroid.global_position) > ASTEROIDS_MAX_DISTANCE_FROM_PLAYER * ASTEROIDS_MAX_DISTANCE_FROM_PLAYER:
+			asteroid.queue_free()
+	
+	if asteroids.size() < asteroids_cap:
 		spawn_asteroid()
 
 func spawn_asteroid() -> void:
