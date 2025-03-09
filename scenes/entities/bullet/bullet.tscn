@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://fpj7noijpm1f" path="res://scenes/entities/bullet/bullet.gd" id="1_81e36"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_1gf24"]
+b = Vector2(0, -10)
 
 [node name="Bullet" type="RigidBody2D" groups=["bullets"]]
 collision_layer = 2
@@ -19,7 +20,7 @@ script = ExtResource("1_81e36")
 shape = SubResource("SegmentShape2D_1gf24")
 
 [node name="Bullet" type="Line2D" parent="."]
-points = PackedVector2Array(0, 0, 0, 10)
+points = PackedVector2Array(0, 0, 0, -10)
 width = 1.0
 default_color = Color(0, 1, 0, 1)
 
