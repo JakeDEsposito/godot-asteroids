@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 asteroids="Group for all asteroids in the game"
 bullets="Group for all bullets in the game"
 
+[gui]
+
+theme/custom_font="uid://bdspvxj08v5vs"
+
 [input]
 
 forward={
