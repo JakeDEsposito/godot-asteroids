@@ -11,7 +11,7 @@ const MOVE_SCALER: float = 0.6
 @onready var explosion_audio: AudioStreamPlayer = %ExplosionAudio
 @onready var laser_audio: AudioStreamPlayer = $LaserAudio
 
-var bullet_scene = preload("res://scenes/entities/bullet/bullet.tscn")
+const bullet_scene = preload("res://scenes/entities/bullet/bullet.tscn")
 
 var health: int = 3
 var is_invulnerable: bool = false
