@@ -39,15 +39,11 @@ func take_hit() -> void:
 		var meteoroids_count := randi_range(1, 3)
 		var angle_step := TAU / meteoroids_count
 		
-		var asteroid_scene := load("res://scenes/entities/asteroid/asteroid.tscn")
-		
 		for i in meteoroids_count:
 			var theta := i * angle_step
 			
-			var asteroid = asteroid_scene.instantiate()
-			asteroid.size = size
+			var asteroid := duplicate()
 			asteroid.global_position = Vector2(cos(theta), sin(theta)) * size * 10 + global_position
-			asteroid.linear_velocity = linear_velocity
 			asteroid.apply_force(Vector2.UP.rotated(theta) * randf_range(50, 500))
 			
 			get_parent().call_deferred("add_child", asteroid)
