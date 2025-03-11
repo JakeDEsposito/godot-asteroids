@@ -32,7 +32,6 @@ func _on_spawn_asteroid_timer_timeout() -> void:
 
 func spawn_asteroid() -> void:
 	var asteroid: RigidBody2D = asteroid_scene.instantiate()
-	asteroid.size = randi_range(1, MAX_ASTEROID_SIZE)
 	
 	# Distance away from player
 	var spawn_distance = randf_range(ASTEROIDS_SPAWN_DISTANCE_FROM_PLAYER_LOWER, ASTEROIDS_SPAWN_DISTANCE_FROM_PLAYER_UPPER)
