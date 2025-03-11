@@ -13,13 +13,21 @@ const MOVE_SCALER: float = 0.6
 
 const bullet_scene = preload("res://scenes/entities/bullet/bullet.tscn")
 
-var health: int = 3
-var score: int = 0
+signal health_updated(new_health: int)
+var health: int = 3:
+	set(new_health):
+		health = new_health
+		health_updated.emit(new_health)
+
+signal score_updated(new_score: int)
+var score: int = 0:
+	set(new_score):
+		score = new_score
+		score_updated.emit(new_score)
+
+
 var is_invulnerable: bool = false
 var can_shoot: bool = true
-
-signal health_updated(new_health: int)
-signal score_updated(new_score: int)
 
 func _physics_process(dt: float) -> void:
 	move(dt)
@@ -55,8 +63,6 @@ func take_hit() -> void:
 	
 	health -= 1
 	
-	health_updated.emit(health)
-	
 	if health > 0:
 		impact_audio.play()
 		
@@ -88,7 +94,6 @@ func shoot() -> void:
 func bullet_hit(body: Node) -> void:
 	if (body.is_in_group("asteroids")):
 		score += 1
-		score_updated.emit(score)
 
 func _on_body_entered(body: Node) -> void:
 	take_hit()
