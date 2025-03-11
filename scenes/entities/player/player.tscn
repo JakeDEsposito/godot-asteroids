@@ -108,3 +108,4 @@ volume_db = -12.0
 bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="score_updated" from="." to="." method="_on_score_updated"]

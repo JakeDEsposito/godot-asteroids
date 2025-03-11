@@ -97,3 +97,7 @@ func bullet_hit(body: Node) -> void:
 
 func _on_body_entered(body: Node) -> void:
 	take_hit()
+
+func _on_score_updated(new_score: int) -> void:
+	if new_score % 25 == 0:
+		health += 1
