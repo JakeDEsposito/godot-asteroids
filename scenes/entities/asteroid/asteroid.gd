@@ -8,7 +8,6 @@ const MAX_ASTEROID_SIZE: int = 2
 @export_range(0, MAX_ASTEROID_SIZE) var size: int = randi_range(1, MAX_ASTEROID_SIZE)
 
 @onready var shape: Line2D = %Shape
-
 @onready var collision: CollisionShape2D = %Collision
 @onready var explosion_audio: AudioStreamPlayer = %ExplosionAudio
 
@@ -28,6 +27,9 @@ func _ready() -> void:
 		
 		shape.add_point(point * 10)
 	
+	shape.scale *= size
+	collision.scale *= size
+
 func take_hit() -> void:
 	size -= 1
 	
@@ -37,12 +39,16 @@ func take_hit() -> void:
 		var meteoroids_count := randi_range(1, 3)
 		var angle_step := TAU / meteoroids_count
 		
+		var asteroid_scene := load("res://scenes/entities/asteroid/asteroid.tscn")
+		
 		for i in meteoroids_count:
 			var theta := i * angle_step
 			
-			var asteroid := duplicate(DUPLICATE_USE_INSTANTIATION)
+			var asteroid = asteroid_scene.instantiate()
+			asteroid.size = size
 			asteroid.global_position = Vector2(cos(theta), sin(theta)) * size * 10 + global_position
-			asteroid.apply_force(Vector2.UP.rotated(theta) * randf_range(1, 10))
+			asteroid.linear_velocity = linear_velocity
+			asteroid.apply_force(Vector2.UP.rotated(theta) * randf_range(50, 500))
 			
 			get_parent().add_child(asteroid)
 	
