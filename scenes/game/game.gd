@@ -18,7 +18,7 @@ const asteroid_scene = preload("res://scenes/entities/asteroid/asteroid.tscn")
 const gameover_ui = preload("res://scenes/ui/gameover.tscn")
 
 func _on_increase_asteroids_cap_timer_timeout() -> void:
-	asteroids_cap += floor(score / 10) + 1
+	asteroids_cap += floori(score / 10.0) + 1
 
 func _on_spawn_asteroid_timer_timeout() -> void:
 	var asteroids = get_tree().get_nodes_in_group("asteroids")
