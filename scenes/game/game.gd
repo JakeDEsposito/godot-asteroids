@@ -47,11 +47,11 @@ func spawn_asteroid() -> void:
 	asteroid.linear_velocity = player.linear_velocity
 	asteroid.apply_force(Vector2(spawn_force_deviation, spawn_force).rotated(spawn_angle))
 	
-	asteroid.body_entered.connect(_on_asteroid_hit)
-	
 	add_child(asteroid)
 
-func _on_asteroid_hit(body: Node) -> void:
-	if body.is_in_group("bullets"):
-		score += 1
-		game_ui.set_score(score)
+func _on_player_health_updated(new_health: int) -> void:
+	game_ui.set_health(new_health)
+
+func _on_player_score_updated(new_score: int) -> void:
+	game_ui.set_score(new_score)
+	score = new_score

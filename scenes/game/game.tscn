@@ -26,5 +26,7 @@ autostart = true
 [node name="GameUI" parent="CanvasLayer" instance=ExtResource("3_0sr1o")]
 unique_name_in_owner = true
 
+[connection signal="health_updated" from="Player" to="." method="_on_player_health_updated"]
+[connection signal="score_updated" from="Player" to="." method="_on_player_score_updated"]
 [connection signal="timeout" from="IncreaseAsteroidsCapTimer" to="." method="_on_increase_asteroids_cap_timer_timeout"]
 [connection signal="timeout" from="SpawnAsteroidTimer" to="." method="_on_spawn_asteroid_timer_timeout"]
