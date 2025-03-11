@@ -95,7 +95,7 @@ func bullet_hit(body: Node) -> void:
 	if (body.is_in_group("asteroids")):
 		score += 1
 
-func _on_body_entered(body: Node) -> void:
+func _on_body_entered(_body: Node) -> void:
 	take_hit()
 
 func _on_score_updated(new_score: int) -> void:
