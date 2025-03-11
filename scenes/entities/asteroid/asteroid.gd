@@ -27,8 +27,8 @@ func _ready() -> void:
 		
 		shape.add_point(point * 10)
 	
-	shape.scale *= size
-	collision.scale *= size
+	shape.scale = Vector2.ONE * size
+	collision.scale = Vector2.ONE * size
 
 func take_hit() -> void:
 	size -= 1
