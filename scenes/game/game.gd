@@ -12,6 +12,7 @@ var asteroids_cap: int = ASTEROIDS_BASE_COUNT
 var score: int = 0
 
 @onready var player: RigidBody2D = %Player
+@onready var game_ui: Control = %GameUI
 
 var asteroid_scene := preload("res://scenes/entities/asteroid/asteroid.tscn")
 
@@ -46,4 +47,11 @@ func spawn_asteroid() -> void:
 	asteroid.linear_velocity = player.linear_velocity
 	asteroid.apply_force(Vector2(spawn_force_deviation, spawn_force).rotated(spawn_angle))
 	
+	asteroid.body_entered.connect(_on_asteroid_hit)
+	
 	add_child(asteroid)
+
+func _on_asteroid_hit(body: Node) -> void:
+	if body.is_in_group("bullets"):
+		score += 1
+		game_ui.set_score(score)

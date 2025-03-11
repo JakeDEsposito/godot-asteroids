@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cyvcay4u6fgui"]
+[gd_scene load_steps=4 format=3 uid="uid://cyvcay4u6fgui"]
 
 [ext_resource type="Script" uid="uid://o1tgqoy7ymeq" path="res://scenes/game/game.gd" id="1_ipsg0"]
 [ext_resource type="PackedScene" uid="uid://dsrqfv74uedqb" path="res://scenes/entities/player/player.tscn" id="2_povof"]
+[ext_resource type="PackedScene" uid="uid://bbtn3o44ciabx" path="res://scenes/ui/gameui.tscn" id="3_0sr1o"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ipsg0")
@@ -19,6 +20,11 @@ autostart = true
 [node name="SpawnAsteroidTimer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameUI" parent="CanvasLayer" instance=ExtResource("3_0sr1o")]
+unique_name_in_owner = true
 
 [connection signal="timeout" from="IncreaseAsteroidsCapTimer" to="." method="_on_increase_asteroids_cap_timer_timeout"]
 [connection signal="timeout" from="SpawnAsteroidTimer" to="." method="_on_spawn_asteroid_timer_timeout"]
