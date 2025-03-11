@@ -50,7 +50,7 @@ func take_hit() -> void:
 			asteroid.linear_velocity = linear_velocity
 			asteroid.apply_force(Vector2.UP.rotated(theta) * randf_range(50, 500))
 			
-			get_parent().add_child(asteroid)
+			get_parent().call_deferred("add_child", asteroid)
 	
 	hide()
 	collision.call_deferred("set_disabled", true)
