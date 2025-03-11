@@ -29,14 +29,7 @@ func _physics_process(dt: float) -> void:
 	if Input.is_action_pressed("shoot") and can_shoot:
 		can_shoot = false
 		
-		var bullet: RigidBody2D = bullet_scene.instantiate()
-		
-		bullet.transform = muzzle.global_transform
-		bullet.apply_force(Vector2(0, -20000).rotated(bullet.rotation))
-		
-		owner.add_child(bullet)
-		
-		laser_audio.play()
+		shoot()
 		
 		get_tree().create_timer(0.2, false).timeout.connect(func(): can_shoot = true)
 
@@ -74,6 +67,16 @@ func take_hit() -> void:
 		#queue_free
 		
 		# TODO: Move to game over screen.
+
+func shoot() -> void:
+	var bullet: RigidBody2D = bullet_scene.instantiate()
+	
+	bullet.transform = muzzle.global_transform
+	bullet.apply_force(Vector2(0, -20000).rotated(bullet.rotation))
+	
+	owner.add_child(bullet)
+	
+	laser_audio.play()
 
 func _on_body_entered(body: Node) -> void:
 	print(collision_layer)
