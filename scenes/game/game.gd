@@ -14,7 +14,8 @@ var score: int = 0
 @onready var player: RigidBody2D = %Player
 @onready var game_ui: Control = %GameUI
 
-var asteroid_scene := preload("res://scenes/entities/asteroid/asteroid.tscn")
+const asteroid_scene = preload("res://scenes/entities/asteroid/asteroid.tscn")
+const gameover_ui = preload("res://scenes/ui/gameover.tscn")
 
 func _on_increase_asteroids_cap_timer_timeout() -> void:
 	asteroids_cap += floor(score / 10) + 1
