@@ -51,7 +51,7 @@ func spawn_asteroid() -> void:
 	add_child(asteroid)
 
 func _on_player_health_updated(new_health: int) -> void:
-	game_ui.set_health(new_health)
+	game_ui.set_lives(new_health)
 
 func _on_player_score_updated(new_score: int) -> void:
 	game_ui.set_score(new_score)
