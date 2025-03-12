@@ -15,6 +15,11 @@ run/main_scene="uid://uvmkafbml481"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[debug]
+
+gdscript/warnings/untyped_declaration=1
+gdscript/warnings/inferred_declaration=1
+
 [global_group]
 
 asteroids="Group for all asteroids in the game"

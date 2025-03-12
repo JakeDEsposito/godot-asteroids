@@ -11,7 +11,7 @@ const MOVE_SCALER: float = 0.6
 @onready var explosion_audio: AudioStreamPlayer = %ExplosionAudio
 @onready var laser_audio: AudioStreamPlayer = $LaserAudio
 
-const bullet_scene = preload("res://scenes/entities/bullet/bullet.tscn")
+const bullet_scene: PackedScene = preload("res://scenes/entities/bullet/bullet.tscn")
 
 signal health_updated(new_health: int)
 var health: int = 3:
@@ -43,7 +43,7 @@ func _physics_process(dt: float) -> void:
 		
 		shoot()
 		
-		get_tree().create_timer(0.2, false).timeout.connect(func(): can_shoot = true)
+		get_tree().create_timer(0.2, false).timeout.connect(func() -> void: can_shoot = true)
 
 func move(dt: float) -> void:
 	# Forward Movement
@@ -68,7 +68,7 @@ func take_hit() -> void:
 		
 		is_invulnerable = true
 		
-		get_tree().create_timer(5, false).timeout.connect(func(): is_invulnerable = false)
+		get_tree().create_timer(5, false).timeout.connect(func() -> void: is_invulnerable = false)
 	else:
 		engine_audio.stop()
 		explosion_audio.play()

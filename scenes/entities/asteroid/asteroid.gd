@@ -14,14 +14,14 @@ const MAX_ASTEROID_SIZE: int = 2
 func _ready() -> void:
 	shape.clear_points()
 	
-	for i in RESOLUTION:
-		var theta = i * ANGLE_STEP
-		var point = Vector2(cos(theta), sin(theta)) # TODO: This can probably be simplified by using Vector2.rotated
+	for i: int in RESOLUTION:
+		var theta: float = i * ANGLE_STEP
+		var point: Vector2 = Vector2(cos(theta), sin(theta)) # TODO: This can probably be simplified by using Vector2.rotated
 		
 		if i % 3 == 0:
 			# x controls depth of crater.
 			# y controls shift of crater.
-			var crater = Vector2(randf_range(0.2, 0.5), randf_range(-0.4, 0.4))
+			var crater: Vector2 = Vector2(randf_range(0.2, 0.5), randf_range(-0.4, 0.4))
 			
 			point -= crater.rotated(theta)
 		
@@ -36,13 +36,13 @@ func take_hit() -> void:
 	explosion_audio.play()
 	
 	if size > 0:
-		var meteoroids_count := randi_range(1, 3)
-		var angle_step := TAU / meteoroids_count
+		var meteoroids_count: int = randi_range(1, 3)
+		var angle_step: float = TAU / meteoroids_count
 		
-		for i in meteoroids_count:
-			var theta := i * angle_step
+		for i: int in meteoroids_count:
+			var theta: float = i * angle_step
 			
-			var asteroid := duplicate()
+			var asteroid: RigidBody2D = duplicate()
 			asteroid.global_position = Vector2(cos(theta), sin(theta)) * size * 10 + global_position # TODO: This can probably be simplified by using Vector2.rotated
 			asteroid.apply_force(Vector2.UP.rotated(theta) * randf_range(50, 500))
 			
@@ -51,7 +51,7 @@ func take_hit() -> void:
 	hide()
 	collision.call_deferred("set_disabled", true)
 	
-	explosion_audio.finished.connect(func(): queue_free())
+	explosion_audio.finished.connect(func() -> void: queue_free())
 
 func _on_body_entered(body: Node) -> void:
 	if not body.is_in_group("asteroids"):
