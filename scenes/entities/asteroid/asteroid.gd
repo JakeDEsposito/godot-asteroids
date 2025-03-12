@@ -16,7 +16,7 @@ func _ready() -> void:
 	
 	for i in RESOLUTION:
 		var theta = i * ANGLE_STEP
-		var point = Vector2(cos(theta), sin(theta))
+		var point = Vector2(cos(theta), sin(theta)) # TODO: This can probably be simplified by using Vector2.rotated
 		
 		if i % 3 == 0:
 			# x controls depth of crater.
@@ -43,7 +43,7 @@ func take_hit() -> void:
 			var theta := i * angle_step
 			
 			var asteroid := duplicate()
-			asteroid.global_position = Vector2(cos(theta), sin(theta)) * size * 10 + global_position
+			asteroid.global_position = Vector2(cos(theta), sin(theta)) * size * 10 + global_position # TODO: This can probably be simplified by using Vector2.rotated
 			asteroid.apply_force(Vector2.UP.rotated(theta) * randf_range(50, 500))
 			
 			get_parent().call_deferred("add_child", asteroid)
