@@ -1,9 +1,13 @@
-[gd_scene format=3 uid="uid://uvmkafbml481"]
+[gd_scene load_steps=2 format=3 uid="uid://uvmkafbml481"]
 
-[node name="MainMenu" type="Control"]
-layout_mode = 3
+[ext_resource type="Texture2D" uid="uid://bl6ljxjef6olf" path="res://assets/textures/space.png" id="1_c040g"]
+
+[node name="MainMenu" type="TextureRect"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("1_c040g")
+expand_mode = 3
+stretch_mode = 1
